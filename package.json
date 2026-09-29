@@ -1,0 +1,115 @@
+{
+  "name": "minecraft-account-launcher",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MinecraftAccountLauncher — a clean NEXUS Control desktop app with an embedded local bot runtime.",
+  "main": "electron/main.cjs",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "electron .",
+    "start:web": "node server.js",
+    "check": "node --check server.js && node --check public/app.js && node --check electron/main.cjs && node --check electron/preload.cjs",
+    "dist:win": "electron-builder --win",
+    "dist": "electron-builder",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux",
+    "dist:all": "electron-builder --mac --win --linux"
+  },
+  "dependencies": {
+    "mineflayer": "4.39.0"
+  },
+  "devDependencies": {
+    "electron": "44.3.0",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "com.nexuscontrol.minecraftaccountlauncher",
+    "productName": "MinecraftAccountLauncher",
+    "artifactName": "${productName}-${version}-${os}-${arch}.${ext}",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "electron/**/*",
+      "public/**/*",
+      "config/**/*",
+      "data/**/*",
+      "uploads/**/*",
+      "server.js",
+      "package.json",
+      "!data/accounts.json"
+    ],
+    "asar": false,
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "MinecraftAccountLauncher"
+    },
+    "portable": {
+      "artifactName": "${productName}-Portable-${version}.${ext}"
+    },
+    "compression": "normal",
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "zip",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        },
+        {
+          "target": "deb",
+          "arch": [
+            "x64",
+            "arm64"
+          ]
+        }
+      ]
+    }
+  }
+}

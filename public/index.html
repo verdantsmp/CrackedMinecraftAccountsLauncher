@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#070b10">
+<title>NEXUS Control — MinecraftAccountLauncher</title>
+<link rel="stylesheet" href="/styles.css?v=4000">
+</head>
+<body class="landing-open">
+<div id="systemLauncher" class="system-launcher" aria-hidden="false">
+  <div class="launcher-noise"></div>
+  <div class="launcher-orb orb-one"></div>
+  <div class="launcher-orb orb-two"></div>
+  <div class="launcher-shell">
+    <header class="launcher-header">
+      <div class="launcher-header-inner">
+        <div class="launcher-brand">
+          <div class="launcher-mark">N</div>
+          <div><strong id="launcherSiteName">NEXUS Control</strong><span>Local tools</span></div>
+        </div>
+        <div class="launcher-header-actions">
+          <a class="launcher-link" id="launcherCommunity" href="#" target="_blank" rel="noopener">Discord Server</a>
+          <a class="launcher-link launcher-discord" id="launcherInvite" href="#" target="_blank" rel="noopener">Discord Bot</a>
+          <a class="launcher-link" href="/discord-docs.html" target="_blank" rel="noopener">Docs</a>
+          <span class="launcher-session"><span class="launcher-dot"></span>Local session</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="launcher-copy">
+      <span class="section-label">WELCOME</span>
+      <h1>Choose your workspace</h1>
+      <p>Choose the workspace you want to use.</p>
+    </div>
+
+    <div class="workspace-grid workspace-grid-two">
+      <button class="workspace-card workspace-card-featured" data-system="cracked" type="button">
+        <div class="workspace-card-topline"><span class="workspace-card-kicker">MINECRAFT</span><span class="status-chip online">Available</span></div>
+        <div class="workspace-card-icon workspace-card-icon-cracked"><img src="/assets/cracked-workspace.png" alt="Cracked Accounts"></div>
+        <div class="workspace-card-main">
+          <div class="workspace-kicker">MINECRAFT</div>
+          <h2>Cracked Accounts</h2>
+          <p>Manage offline-mode test accounts, server connections, chat, movement, and automation.</p>
+        </div>
+        <div class="workspace-feature-row"><span>Accounts</span><span>Queue</span><span>Control</span><span>Automation</span></div>
+        <div class="workspace-card-meta"><span>Open workspace</span><b>→</b></div>
+      </button>
+
+      <button class="workspace-card workspace-card-planned" data-system="hosting" type="button">
+        <div class="workspace-card-topline"><span class="workspace-card-kicker">DISCORD</span><span class="status-chip muted-chip">Coming Soon</span></div>
+        <div class="workspace-card-icon workspace-card-icon-hosting"><img src="/assets/discord-workspace.png" alt="Discord Bot Hosting"></div>
+        <div class="workspace-card-main">
+          <div class="workspace-kicker">DISCORD</div>
+          <h2>Discord Bot Hosting</h2>
+          <p>Tools for deploying and managing Discord bots from one place. This workspace is not available yet.</p>
+        </div>
+        <div class="workspace-feature-row"><span>Projects</span><span>Runtime</span><span>Logs</span><span>Deploy</span></div>
+        <div class="workspace-card-meta"><span>Coming soon</span><b>—</b></div>
+      </button>
+    </div>
+  </div>
+</div>
+<div id="appShell" class="app-shell">
+<div class="ambient ambient-a"></div><div class="ambient ambient-b"></div><div class="grid-fade"></div>
+<header class="topbar">
+  <div class="brand" id="brandHome" role="button" tabindex="0" title="Open systems"><div class="brand-mark">N</div><div><strong id="appSiteName">NEXUS Control</strong><span>Offline account workspace</span></div></div>
+  <div class="top-actions">
+    <a class="top-link" id="appCommunity" href="#" target="_blank" rel="noopener">Discord</a><a class="top-link top-link-discord" id="appInvite" href="#" target="_blank" rel="noopener">Discord Bot</a>
+    <div class="server-pill"><span class="dot" id="topTargetDot"></span><div><small>Target</small><b id="topTarget">Not set</b></div></div>
+    <button class="button ghost" id="systemSwitcher">Systems</button><button class="button ghost" id="topSettings">Settings</button>
+    <button class="button primary" id="newAccountTop">New account</button>
+  </div>
+</header>
+
+<div class="mode-dock" aria-label="Connection mode">
+  <span class="mode-dock-dot"></span>
+  <div><strong>Offline mode</strong><small>For offline-mode servers</small></div>
+</div>
+
+<div class="layout">
+  <aside class="sidebar">
+    <nav class="nav">
+      <button class="nav-item active" data-view="dashboard"><span>01</span><div>Dashboard</div></button>
+      <button class="nav-item" data-view="accounts"><span>02</span><div>Accounts</div></button>
+      <button class="nav-item" data-view="logs"><span>03</span><div>Logs & Chat</div></button>
+      <button class="nav-item" data-view="settings"><span>04</span><div>Server settings</div></button>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <div class="page-head"><div><span class="section-label" id="pageEyebrow">CONTROL CENTER</span><h1 id="pageTitle">Dashboard</h1><p id="pageSubtitle">Select a bot, check its status, and control it from one place.</p></div></div>
+
+    <section class="view" aria-hidden="true" hidden id="dashboardView">
+      <div class="dashboard-top">
+        <article class="hero-card">
+          <div class="hero-copy"><span class="section-label">SERVER TARGET</span><h2 id="heroTarget">Not set</h2><p>New accounts inherit this target automatically.</p></div>
+          <div class="quick-row"><input id="quickServer" class="field field-large" placeholder="play.example.net:25565" autocomplete="off" spellcheck="false"><button class="button primary" id="applyQuickServer">Use server</button><button class="button ghost" id="testQuickServer">Test</button></div>
+          <div class="queue-strip"><span id="queueState">0 queued · 0 connecting</span><div class="queue-actions"><button class="tool-button" id="joinAll">Join all</button><button class="tool-button" id="stopAllTop">Stop all</button><button class="tool-button" id="clearQueue">Clear queue</button></div></div>
+        </article>
+        <div class="stats-grid compact-stats">
+          <article class="stat-card"><span>Saved</span><strong id="statSaved">0</strong><small>accounts</small></article>
+          <article class="stat-card"><span>Online</span><strong id="statOnline">0</strong><small>connected</small></article>
+          <article class="stat-card"><span>Selected</span><strong id="statSelected">0</strong><small>accounts</small></article>
+          <article class="stat-card"><span>Events</span><strong id="statEvents">0</strong><small>log entries</small></article>
+        </div>
+      </div>
+
+      <div class="section-head compact-head"><div><span class="section-label">ACCOUNTS</span><h2>Saved accounts</h2></div><div class="selection-summary" id="selectionHint">0 selected</div></div>
+      <div class="account-workspace">
+        <div class="account-list-shell">
+          <div class="list-toolbar">
+            <div class="toolbar-left"><button class="tool-button" id="selectAllAccounts">Select all</button><button class="tool-button" id="selectVisible">Select visible</button><button class="tool-button" id="invertSelection">Invert</button><button class="tool-button" id="clearSelection">Clear</button></div>
+            <div class="toolbar-right"><input id="dashboardSearch" class="field" placeholder="Search accounts" autocomplete="off"><select id="dashboardFilter" class="field select"><option value="all">All</option><option value="online">Online</option><option value="offline">Offline</option><option value="joining">Joining</option><option value="selected">Selected</option></select></div>
+          </div>
+          <div class="list-header"><div></div><div>Account</div><div>Target</div><div>Status</div><div>Action</div></div>
+          <div id="dashboardAccounts" class="saved-list"></div>
+          <div id="dashboardEmpty" class="empty-state"><div class="empty-icon">+</div><h3>No saved accounts yet</h3><p>Create a profile and it will appear here immediately.</p><button class="button primary" id="emptyNewAccount">New account</button></div>
+        </div>
+        <aside class="inspector" id="inspector"><div class="inspector-empty" id="inspectorEmpty"><div class="inspector-icon">›</div><h3>Select an account</h3><p>Pick a bot from the list to control it here.</p></div><div id="inspectorBody" class="hidden"></div></aside>
+      </div>
+
+      <div class="bulk-bar">
+        <div class="bulk-main"><strong id="bulkCount">0 selected</strong><span id="bulkServer">No target set</span></div>
+        <div class="bulk-actions"><button class="button primary" id="joinSelected">Join selected</button><button class="button ghost" id="leaveSelected">Leave selected</button><button class="button ghost" id="joinAllBottom">Join all</button><button class="button ghost" id="leaveAllBottom">Leave all</button><button class="button ghost" id="stopAllBottom">Stop all</button><button class="button ghost" id="chatSelected">Message</button><button class="button ghost" id="automationSelected">Auto chat</button></div>
+      </div>
+    </section>
+
+    <section class="view" aria-hidden="true" hidden id="accountsView">
+      <div class="toolbar-card"><div><span class="section-label">ACCOUNT MANAGER</span><h2>All profiles</h2><p>Compact rows stay readable even with large bot collections.</p></div><div class="toolbar-actions"><button class="tool-button" id="accountsSelectAllGlobal">Select all</button><button class="tool-button" id="accountsSelectAll">Select visible</button><button class="tool-button" id="accountsInvert">Invert</button><input id="accountsSearch" class="field" placeholder="Search accounts" autocomplete="off"><select id="accountsFilter" class="field select"><option value="all">All</option><option value="online">Online</option><option value="offline">Offline</option><option value="joining">Joining</option><option value="selected">Selected</option></select></div></div>
+      <div id="accountsList" class="manager-list"></div>
+      <div id="accountsEmpty" class="empty-state accounts-empty"><div class="empty-icon">+</div><h3>No saved accounts</h3><p>Create your first profile to manage bots from this workspace.</p><button class="button primary" id="accountsEmptyNew">New account</button></div>
+    </section>
+
+    <section class="view" aria-hidden="true" hidden id="logsView">
+      <div class="split-page logs-layout">
+        <article class="panel-card log-panel"><div class="panel-head"><div><span class="section-label">LIVE EVENTS</span><h2>Logs</h2></div><select id="logFilter" class="field select"><option value="all">All accounts</option></select></div><div id="logsFeed" class="logs-feed"></div></article>
+        <div class="logs-right">
+          <article class="panel-card chat-panel"><div class="panel-head"><div><span class="section-label">SERVER CHAT</span><h2 id="logsChatTitle">Select an account</h2></div><select id="logsChatAccount" class="field select"><option value="__selected__">Selected accounts</option><option value="__all__">All saved accounts</option></select></div><div class="panel-subline"><span id="logsChatTargetHint">0 selected</span><span>Messages queue safely for each bot.</span></div><div id="logsChatFeed" class="chat-feed"></div><div class="panel-foot"><input id="logsChatInput" class="field" placeholder="Type a message..." autocomplete="off" maxlength="256"><button class="button primary" id="logsChatSend">Send</button></div></article>
+          <article class="panel-card events-panel"><div class="panel-head"><div><span class="section-label">COMMANDS</span><h2 id="logsCommandsTitle">Command history</h2></div><span class="status-chip offline">Live</span></div><div id="logsCommandsFeed" class="event-feed"></div></article>
+          <article class="panel-card events-panel"><div class="panel-head"><div><span class="section-label">CONNECTION</span><h2 id="logsEventsTitle">Account activity</h2></div><span class="status-chip offline">Live</span></div><div id="logsEventsFeed" class="event-feed"></div></article>
+        </div>
+      </div>
+      <article class="panel-card automation-card"><div class="panel-head"><div><span class="section-label">AUTOMATION</span><h2>Automatic chat</h2><p>Send scheduled messages to the selected accounts in saved-list order.</p></div><span id="automationStatus" class="status-chip offline">Stopped</span></div><div class="automation-grid"><label class="field-label"><span>Messages <em>one per line</em></span><textarea id="automationMessage" class="field textarea" rows="4" maxlength="2000" placeholder="AFK test message...
+Still here"></textarea></label><label class="field-label"><span>Interval <em>seconds · 0 = immediate</em></span><input id="automationInterval" class="field" type="number" step="1" inputmode="numeric" placeholder="30"></label><div class="automation-target"><span class="section-label">TARGETS</span><strong id="automationTargets">0 selected</strong><small>Uses the shared account selection.</small></div><div class="automation-actions"><button class="button primary" id="automationStart">Start</button><button class="button ghost" id="automationStop" disabled>Stop</button></div></div></article>
+    </section>
+
+    <section class="view" aria-hidden="true" hidden id="settingsView">
+      <div class="settings-hero"><div><span class="section-label">SERVER</span><h2>Server settings</h2><p>Set the server target and connection behaviour here.</p></div><div class="settings-target-pill"><span class="dot" id="settingsTargetDot"></span><div><small>Current target</small><strong id="settingsTarget">Not set</strong></div></div></div>
+      <div class="settings-grid">
+        <article class="panel-card settings-main"><div class="panel-head"><div><span class="section-label">CONNECTION</span><h3>Server target</h3><p>Use a hostname, IP, or host:port. Port defaults to 25565.</p></div></div><div class="target-form"><input id="setHost" class="field field-xl" placeholder="play.example.net:25565" autocomplete="off" spellcheck="false"><button class="button primary" id="saveSettings">Save target</button><button class="button ghost" id="resetSettings">Reset defaults</button><button class="button ghost" id="testConnection">Test</button></div><div id="connectionResult" class="test-result">No test run yet.</div><div class="field-grid compact-grid"><label class="field-label"><span>Port</span><input id="setPort" class="field" type="number" min="1" max="65535"></label><label class="field-label"><span>Version <em>optional</em></span><input id="setVersion" class="field" placeholder="Automatic" autocomplete="off"></label></div></article>
+
+        <article class="panel-card settings-behaviour"><div class="panel-head"><div><span class="section-label">JOIN FLOW</span><h3>Queue & execution</h3><p>All timing and execution values are configurable. Use 0 for immediate or unlimited behaviour.</p></div></div><div class="field-grid compact-grid"><label class="field-label"><span>Join delay <em>ms</em></span><input id="setJoinDelay" class="field" type="number" step="1" inputmode="numeric" placeholder="1000"></label><label class="field-label"><span>Concurrent joins <em>0 = all</em></span><input id="setMaxConcurrent" class="field" type="number" step="1" inputmode="numeric" placeholder="1"></label><label class="field-label"><span>Random jitter <em>ms</em></span><input id="setJoinJitter" class="field" type="number" step="1" inputmode="numeric" placeholder="0"></label><label class="field-label"><span>Join timeout <em>0 = disabled</em></span><input id="setJoinTimeout" class="field" type="number" step="1" inputmode="numeric" placeholder="20000"></label><label class="field-label"><span>Leave delay <em>ms</em></span><input id="setLeaveDelay" class="field" type="number" step="1" inputmode="numeric" placeholder="0"></label></div><div class="field-grid compact-grid"><label class="field-label"><span>Join order</span><select id="setJoinOrder" class="field select"><option value="saved-top-down">Saved list · top to bottom</option><option value="selected-order">Selection order</option><option value="reverse">Saved list · bottom to top</option></select></label><label class="field-label"><span>Leave order</span><select id="setLeaveOrder" class="field select"><option value="saved-top-down">Saved list · top to bottom</option><option value="selected-order">Selection order</option><option value="reverse">Saved list · bottom to top</option></select></label></div><div class="preset-row"><span>Presets</span><button class="tool-button" data-preset="immediate">Immediate</button><button class="tool-button" data-preset="onePerSecond">1 / second</button><button class="tool-button" data-preset="gentle">Gentle</button></div></article>
+
+        <article class="panel-card"><div class="panel-head"><div><span class="section-label">RECONNECT</span><h3>Recovery</h3><p>Retry dropped connections automatically when enabled.</p></div></div><div class="field-grid compact-grid"><label class="field-label"><span>Reconnect delay <em>milliseconds · 0 = immediate</em></span><input id="setReconnectDelay" class="field" type="number" inputmode="numeric" step="1"></label><label class="field-label"><span>Max attempts <em>0 = unlimited</em></span><input id="setMaxReconnect" class="field" type="number" inputmode="numeric" step="1"></label></div><label class="toggle-row"><div><strong>Auto reconnect</strong><small>Applies globally unless an account is configured otherwise.</small></div><span class="switch"><input id="setAutoReconnect" type="checkbox"><i></i></span></label><label class="toggle-row"><div><strong>Backoff retries</strong><small>Increase the wait after repeated failures.</small></div><span class="switch"><input id="setReconnectBackoff" type="checkbox"><i></i></span></label><label class="toggle-row"><div><strong>Keep connected sessions online</strong><small>Unexpected disconnects are recovered automatically after a connection has been started.</small></div><span class="switch"><input id="setKeepOnline" type="checkbox"><i></i></span></label><label class="toggle-row"><div><strong>Reconnect after kick</strong><small>Try the session again after a server-side kick.</small></div><span class="switch"><input id="setReconnectAfterKick" type="checkbox"><i></i></span></label><label class="toggle-row"><div><strong>Automatic respawn</strong><small>Respawn automatically after death when supported by the server.</small></div><span class="switch"><input id="setAutoRespawn" type="checkbox"><i></i></span></label></article>
+
+        <article class="panel-card"><div class="panel-head"><div><span class="section-label">CHAT</span><h3>Chat compatibility</h3><p>Keep chat enabled and use unsigned-chat compatibility for offline profiles when the server accepts it.</p></div></div><label class="toggle-row"><div><strong>Unsigned chat compatibility</strong><small>Useful on offline-mode servers that reject signed chat packets. Some servers may require secure profiles instead.</small></div><span class="switch"><input id="setChatSigningCompatibility" type="checkbox"><i></i></span></label></article>
+
+        <article class="panel-card"><div class="panel-head"><div><span class="section-label">PERFORMANCE</span><h3>Runtime & traffic</h3><p>Keep the interface lightweight while keeping the runtime configurable.</p></div></div><div class="field-grid compact-grid"><label class="field-label"><span>Live update <em>ms · 0 = event only</em></span><input id="setLiveUpdate" class="field" type="number" step="1" inputmode="numeric" placeholder="500"></label><label class="field-label"><span>State broadcast <em>ms</em></span><input id="setStateBroadcast" class="field" type="number" step="1" inputmode="numeric" placeholder="100"></label><label class="field-label"><span>Player list <em>0 = unlimited</em></span><input id="setPlayerLimit" class="field" type="number" step="1" inputmode="numeric" placeholder="200"></label><label class="field-label"><span>Log history <em>0 = unlimited</em></span><input id="setLogLimit" class="field" type="number" step="1" inputmode="numeric" placeholder="500"></label><label class="field-label"><span>Multi-chat delay <em>ms</em></span><input id="setMultiChatDelay" class="field" type="number" step="1" inputmode="numeric" placeholder="0"></label><label class="field-label"><span>Movement tap <em>ms</em></span><input id="setMovementTap" class="field" type="number" step="1" inputmode="numeric" placeholder="180"></label><label class="field-label"><span>Chat queue <em>0 = unlimited</em></span><input id="setChatQueueLimit" class="field" type="number" step="1" inputmode="numeric" placeholder="0"></label><label class="field-label"><span>Saved accounts <em>0 = unlimited</em></span><input id="setMaxAccounts" class="field" type="number" step="1" inputmode="numeric" placeholder="0"></label></div><div class="field-grid compact-grid"><label class="field-label"><span>Chat execution order</span><select id="setChatOrder" class="field select"><option value="saved-top-down">Saved list · top to bottom</option><option value="selected-order">Selection order</option><option value="reverse">Saved list · bottom to top</option></select></label></div><div class="performance-note"><span class="dot"></span><span>State updates stay compact; detailed chat can be loaded only for the accounts you inspect.</span></div></article>
+      </div>
+      <div class="settings-bottom"><div class="info-card"><div><span class="section-label">AUTHENTICATION</span><h3>Offline mode</h3><p>This workspace connects without stored account credentials. The target server must accept offline-mode connections.</p></div><span class="status-chip offline">Offline</span></div></div>
+    </section>
+  </main>
+</div>
+
+<div class="modal hidden" id="accountModal" aria-hidden="true"><div class="modal-card create-card"><div class="modal-head"><div><span class="section-label">NEW ACCOUNT</span><h2>Create profile</h2><p>Only the basics are here. Advanced options stay inside the account editor.</p></div><button class="icon-button" data-close="accountModal">×</button></div><div class="create-layout"><div class="create-preview"><div id="createHead" class="head-large"></div><div class="create-preview-text"><strong id="createPreviewName">Bot</strong><span id="createTargetPreview">No server target</span></div></div><div class="create-form"><label class="field-label"><span>Username</span><input id="accountUsername" class="field field-xl" maxlength="16" autocomplete="off" spellcheck="false" placeholder="Bot01"></label><label class="field-label"><span>Display name <em>optional</em></span><input id="accountLabel" class="field" maxlength="32" autocomplete="off" placeholder="Bot01"></label><label class="field-label"><span>Default skin</span><select id="createDefaultSkin" class="field"><option value="steve">Steve</option><option value="alex">Alex</option></select></label><button class="button ghost full" id="openCreateAppearance">Customize appearance</button><label class="toggle-row"><div><strong>Auto reconnect</strong><small>Use global reconnect settings.</small></div><span class="switch"><input id="accountAutoReconnect" type="checkbox"><i></i></span></label><label class="toggle-row"><div><strong>Join on launch</strong><small>Start the bot when the panel launches.</small></div><span class="switch"><input id="accountStartOnLaunch" type="checkbox"><i></i></span></label></div></div><div class="modal-actions"><button class="button ghost" data-close="accountModal">Cancel</button><button class="button primary" id="createAccount">Create account</button></div></div></div>
+
+<div class="modal hidden" id="configModal" aria-hidden="true"><div class="modal-card config-card"><div class="modal-head"><div class="config-title-wrap"><div id="configHead" class="head-md"></div><div><span class="section-label">ACCOUNT</span><h2 id="configTitle">Bot</h2><p><span id="configStatus" class="status-chip offline">Offline</span><span class="config-target">· <b id="configTarget">—</b></span></p></div></div><button class="icon-button" data-close="configModal">×</button></div><div class="config-layout"><aside class="config-nav"><button class="config-tab active" data-config-tab="profile">Profile</button><button class="config-tab" data-config-tab="appearance">Appearance</button><button class="config-tab" data-config-tab="behaviour">Behaviour</button><button class="config-tab" data-config-tab="control">Control</button></aside><div class="config-content">
+<section class="config-pane active" data-pane="profile"><div class="pane-head"><div><span class="section-label">PROFILE</span><h3>Basic details</h3></div></div><div class="field-grid compact-grid"><label class="field-label"><span>Username</span><input id="editUsername" class="field" maxlength="16" autocomplete="off"></label><label class="field-label"><span>Display name</span><input id="editLabel" class="field" maxlength="32" autocomplete="off"></label></div><div class="profile-actions"><button class="button primary" id="saveProfile">Save profile</button><button class="button ghost" id="configJoin">Join</button><button class="button ghost" id="configLeave">Leave</button><button class="button danger" id="deleteAccount">Delete account</button></div></section>
+<section class="config-pane" data-pane="appearance"><div class="pane-head"><div><span class="section-label">APPEARANCE</span><h3>Skin & cape</h3></div><button class="button ghost" id="openFullAppearance">Open editor</button></div><div class="appearance-inline"><div id="appearanceInlineHead" class="head-xl"></div><div><h4 id="appearanceInlineName">Bot</h4><p id="appearanceInlineSummary">Steve</p><button class="button primary" id="saveInlineAppearance">Edit appearance</button></div></div></section>
+<section class="config-pane" data-pane="behaviour"><div class="pane-head"><div><span class="section-label">BEHAVIOUR</span><h3>Connection</h3></div></div><div class="field-grid compact-grid"><label class="field-label"><span>Join delay <em>milliseconds · 0 = immediate</em></span><input id="editJoinDelay" class="field" type="number" inputmode="numeric" step="1" placeholder="Global"></label><label class="field-label"><span>Reconnect delay <em>ms</em></span><input id="editReconnectDelay" class="field" type="number" inputmode="numeric" step="1"></label></div><label class="toggle-row"><div><strong>Auto reconnect</strong><small>Reconnect after unexpected disconnects.</small></div><span class="switch"><input id="editAutoReconnect" type="checkbox"><i></i></span></label><label class="toggle-row"><div><strong>Join on launch</strong><small>Connect when the panel starts.</small></div><span class="switch"><input id="editStartOnLaunch" type="checkbox"><i></i></span></label><div class="custom-server-block"><label class="toggle-row"><div><strong>Use custom server</strong><small>Only this account uses a different target.</small></div><span class="switch"><input id="editUseCustom" type="checkbox"><i></i></span></label><div id="customServerFields" class="field-grid compact-grid hidden"><label class="field-label"><span>Address</span><input id="editHost" class="field" placeholder="server.example.net:25565" autocomplete="off"></label><label class="field-label"><span>Port</span><input id="editPort" class="field" type="number" min="1" max="65535"></label><label class="field-label"><span>Version</span><input id="editVersion" class="field" placeholder="Global / automatic" autocomplete="off"></label></div></div><button class="button primary" id="saveAdvanced">Save behaviour</button></section>
+<section class="config-pane" data-pane="control"><div class="control-layout"><div class="control-main"><div class="panel-card inner"><div class="panel-head"><div><span class="section-label">CHAT</span><h3>Conversation</h3></div><span id="controlChatStatus" class="status-chip offline">Offline</span></div><div id="controlChatFeed" class="chat-feed large"></div><div class="panel-foot"><input id="controlChatInput" class="field" placeholder="Type a message..." autocomplete="off" maxlength="256"><button class="button primary" id="controlChatSend">Send</button></div></div><div class="panel-card inner movement-card"><div class="panel-head"><div><span class="section-label">MOVEMENT</span><h3>Quick controls</h3></div><small>Short taps</small></div><div class="dpad"><button data-move="forward">W</button><div><button data-move="left">A</button><button data-move="back">S</button><button data-move="right">D</button></div></div><div class="control-buttons"><button class="button ghost" data-move="jump">Jump</button><button class="button ghost" data-control="sprint">Sprint</button><button class="button ghost" data-control="sneak">Sneak</button><button class="button ghost" id="controlStop">Stop</button></div><div class="look-controls"><input id="lookYaw" class="field" type="number" placeholder="Yaw"><input id="lookPitch" class="field" type="number" placeholder="Pitch"><button class="button ghost" id="applyLook">Apply look</button></div></div></div><aside class="control-side"><div class="panel-card inner"><div class="panel-head"><div><span class="section-label">LIVE</span><h3>Bot state</h3></div></div><div class="live-list"><span>Status</span><b id="liveStatus">Offline</b><span>Position</span><b id="livePosition">—</b><span>Health</span><b id="liveHealth">—</b><span>Food</span><b id="liveFood">—</b><span>World</span><b id="liveWorld">—</b><span>Players</span><b id="livePlayers">0</b></div></div><div class="panel-card inner"><div class="panel-head"><div><span class="section-label">FOLLOW</span><h3>Follow player</h3></div><span class="status-chip" id="followStatus">Off</span></div><div class="follow-row"><input id="followTarget" class="field" placeholder="Player name" autocomplete="off"><button class="button primary" id="followStart">Follow</button><button class="button ghost" id="followStop">Stop</button></div><div class="follow-hint" id="followHint">The player must be nearby and currently visible to the bot.</div></div><div class="panel-card inner"><div class="panel-head"><div><span class="section-label">PLAYERS</span><h3>Visible</h3></div></div><div id="playerList" class="player-list"></div></div></aside></div></section>
+</div><div class="modal-actions"><button class="button ghost" data-close="configModal">Close</button></div></div></div></div>
+
+<div class="modal hidden" id="appearanceModal" aria-hidden="true"><div class="modal-card appearance-card"><div class="modal-head"><div><span class="section-label">SKIN EDITOR</span><h2>Appearance</h2><p>Drag to inspect the model. Default skins are built in.</p></div><button class="icon-button" data-close="appearanceModal">×</button></div><div class="appearance-layout"><div class="preview-shell"><div id="appearanceStage" class="model-stage"></div><div class="preview-bar"><span id="appearanceFacing">Front</span><div class="preview-actions"><button class="button ghost" id="toggleAppearanceRotate" aria-pressed="false">Auto rotate</button><button class="button ghost" id="resetAppearance">Reset view</button></div></div></div><div class="appearance-fields"><label class="field-label"><span>Default skin</span><select id="defaultSkinSelect" class="field"><option value="steve">Steve</option><option value="alex">Alex</option></select></label><label class="field-label"><span>Skin URL <em>optional</em></span><input id="skinUrl" class="field" placeholder="https://.../skin.png" autocomplete="off" spellcheck="false"><small>Direct PNG works best.</small></label><button class="button ghost full" id="uploadSkinButton">Upload PNG</button><input id="skinFile" type="file" accept="image/png" hidden><label class="field-label"><span>Cape</span><select id="capeSelect" class="field"></select></label><label class="field-label"><span>Custom cape URL <em>optional</em></span><input id="capeUrl" class="field" placeholder="https://.../cape.png" autocomplete="off"></label><div class="cape-texture-preview" id="capeTexturePreview"><span>No cape texture selected</span></div><label class="toggle-row single"><div><strong>Show cape in preview</strong><small>Preview only unless the server supports the texture.</small></div><span class="switch"><input id="capeEnabled" type="checkbox"><i></i></span></label><div class="editor-actions"><button class="button ghost" id="randomizeAppearance">Random default</button><button class="button primary" id="saveAppearanceEditor">Use appearance</button></div></div></div></div></div>
+
+<div class="modal hidden" id="messageModal" aria-hidden="true"><div class="modal-card small-card"><div class="modal-head"><div><span class="section-label">MESSAGE</span><h2>Selected accounts</h2><p>Send immediately to selected accounts, or queue until a connection is ready.</p></div><button class="icon-button" data-close="messageModal">×</button></div><label class="field-label"><span>Target accounts</span><select id="messageTargetMode" class="field select"><option value="selected">Selected accounts</option><option value="all">All accounts</option></select><small class="message-target-count">0 account(s)</small></label><textarea id="multiMessage" class="field textarea" rows="4" maxlength="256" placeholder="Hello from the test group..."></textarea><div class="modal-actions"><button class="button ghost" data-close="messageModal">Cancel</button><button class="button primary" id="sendMultiMessage">Send</button></div></div></div>
+<div class="modal hidden" id="confirmModal" aria-hidden="true"><div class="modal-card small-card"><div class="confirm-icon">!</div><span class="section-label">CONFIRM</span><h2 id="confirmTitle">Delete account?</h2><p id="confirmText">This cannot be undone.</p><div class="modal-actions"><button class="button ghost" data-close="confirmModal">Cancel</button><button class="button danger" id="confirmAction">Delete</button></div></div></div>
+<div id="toastStack" class="toast-stack"></div>
+<script src="/app.js?v=4000"></script>
+</div>
+</body>
+</html>

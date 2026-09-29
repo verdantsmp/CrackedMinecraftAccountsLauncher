@@ -1,0 +1,29 @@
+MinecraftAccountLauncher 40.0.0
+Test report
+
+Static checks
+- server.js syntax: PASS
+- public/app.js syntax: PASS
+- duplicate HTML id scan: PASS
+- ZIP integrity: PASS after packaging
+
+Configuration checks
+- joinDelayMs accepts 0 and arbitrary non-negative values: PASS
+- maxConcurrentJoins accepts 0 (all) and arbitrary non-negative integer values: PASS
+- maxAccounts accepts 0 (unlimited): PASS
+- maxReconnectAttempts accepts 0 (unlimited): PASS
+- multiChatDelayMs accepts 0 (immediate): PASS
+- liveUpdateMs accepts 0 (event-only): PASS
+- stateBroadcastMs accepts 0 (immediate): PASS
+- playerLimit/logLimit/chatQueueLimit accept 0 (unlimited): PASS
+
+Selection safety
+- Selected=empty does not silently fall back to all accounts: PASS
+- All accounts uses an explicit all-account selection: PASS
+- Connect/leave/chat bulk APIs keep explicit selection semantics: PASS
+
+Runtime performance
+- Compact SSE state payloads: PASS
+- Detailed account runtime loaded lazily: PASS
+- Incremental account row rendering: PASS
+- Event-only live updates broadcast on movement/health/player events: PASS
